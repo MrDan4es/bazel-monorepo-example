@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package api.services.minus.v1;
+
+option go_package = "github.com/mrdan4es/bazel-monorepo-example/api/services/minus/v1;minuspb";
+
+service MinusService {
+  rpc Minus(MinusRequest) returns (MinusResponse) {}
+}
+
+message MinusRequest {
+  int32 first = 1;
+  int32 second = 2;
+}
+
+message MinusResponse {
+  int64 result = 1;
+}

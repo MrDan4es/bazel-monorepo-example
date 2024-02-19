@@ -1,0 +1,13 @@
+#bazel_dep(name = "rules_oci", version = "1.7.2")
+#bazel_dep(name = "rules_pkg", version = "0.10.1")
+#
+#oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+#oci.pull(
+#    name = "distroless_base_debian12",
+#    digest = "sha256:2102ce121ff1448316b93c5f347118a8e604f5ba7ec9dd7a5c2d8b0eac2941fe",
+#    image = "gcr.io/distroless/base-debian12",
+#    platforms = [
+#        "linux/amd64",
+#    ],
+#)
+#use_repo(oci, "distroless_base_debian12")

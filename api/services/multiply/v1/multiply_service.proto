@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package api.services.multiply.v1;
+
+option go_package = "github.com/mrdan4es/bazel-monorepo-example/api/services/multiply/v1;multiplypb";
+
+service MultiplyService {
+  rpc Multiply(MultiplyRequest) returns (MultiplyResponse) {}
+}
+
+message MultiplyRequest {
+  int32 first = 1;
+  int32 second = 2;
+}
+
+message MultiplyResponse {
+  int64 result = 1;
+}

@@ -1,0 +1,26 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("//build:container.bzl", "go_image")
+
+go_library(
+    name = "sum_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/mrdan4es/bazel-monorepo-example/pkg/sum",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//api/services/sum/v1:sum",
+        "@org_golang_google_grpc//:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "sum",
+    embed = [":sum_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_image(
+    name = "image",
+    embed = [":sum"],
+    entrypoint = "/sum",
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package api.services.sum.v1;
+
+option go_package = "github.com/mrdan4es/bazel-monorepo-example/api/services/sum/v1;sumpb";
+
+service SumService {
+  rpc Sum(SumRequest) returns (SumResponse) {}
+}
+
+message SumRequest {
+  int32 first = 1;
+  int32 second = 2;
+}
+
+message SumResponse {
+  int64 result = 1;
+}

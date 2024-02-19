@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  minus:
+    image: local/github.com/mrdan4es/bazel-monorepo-example/minus:latest
+  sum:
+    image: local/github.com/mrdan4es/bazel-monorepo-example/sum:latest
+  multiply:
+    image: local/github.com/mrdan4es/bazel-monorepo-example/multiply:latest
