@@ -17,14 +17,24 @@ gazelle(
     command = "update-repos",
 )
 
-load("//build:container.bzl", "container_bundle")
+load("//build:defs.bzl", "container_bundle", "container_push_all")
 
 container_bundle(
     name = "bundle",
     images = {
-        "github.com/mrdan4es/bazel-monorepo-example/sum:latest": "//pkg/sum",
-        "github.com/mrdan4es/bazel-monorepo-example/minus:latest": "//pkg/minus",
-        "github.com/mrdan4es/bazel-monorepo-example/multiply:latest": "//pkg/multiply",
+        "mrdan4es/bazel-monorepo-example/sum:latest": "//pkg/sum",
+        "mrdan4es/bazel-monorepo-example/minus:latest": "//pkg/minus",
+        "mrdan4es/bazel-monorepo-example/multiply:latest": "//pkg/multiply",
     },
     registry = "local",
+)
+
+container_push_all(
+    name = "publish",
+    images = {
+        "mrdan4es/bazel-monorepo-example/sum:latest": "//pkg/sum",
+        "mrdan4es/bazel-monorepo-example/minus:latest": "//pkg/minus",
+        "mrdan4es/bazel-monorepo-example/multiply:latest": "//pkg/multiply",
+    },
+    registry = "docker.io",
 )
