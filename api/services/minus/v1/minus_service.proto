@@ -4,8 +4,19 @@ package api.services.minus.v1;
 
 option go_package = "github.com/mrdan4es/bazel-monorepo-example/api/services/minus/v1;minuspb";
 
+import "api/nats/nats.proto";
+
 service MinusService {
-  rpc Minus(MinusRequest) returns (MinusResponse) {}
+  option (api.nats.nats_service) = {
+    topic: "owl.image.process"
+  };
+
+  rpc Minus(MinusRequest) returns (MinusResponse) {
+    option (api.nats.nats_method) = {
+      request_name: "request",
+      response_name: "response"
+    };
+  }
 }
 
 message MinusRequest {

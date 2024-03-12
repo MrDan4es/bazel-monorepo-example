@@ -2,8 +2,8 @@ load("@bazel_gazelle//:def.bzl", "gazelle")
 load("@rules_multirun//:defs.bzl", "command", "multirun")
 
 # gazelle:prefix github.com/mrdan4es/bazel-monorepo-example
-# gazelle:go_proto_compilers @io_bazel_rules_go//proto:go_proto
-# gazelle:go_grpc_compilers @io_bazel_rules_go//proto:go_grpc
+# gazelle:go_proto_compilers @io_bazel_rules_go//proto:go_proto,//pkg/protoc-gen-nats:go_proto
+# gazelle:go_grpc_compilers @io_bazel_rules_go//proto:go_grpc,//pkg/protoc-gen-nats:go_proto
 # gazelle:exclude empty.go
 gazelle(name = "gazelle")
 

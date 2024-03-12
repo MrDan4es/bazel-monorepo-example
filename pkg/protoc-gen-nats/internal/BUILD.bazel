@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "internal",
+    srcs = ["generate.go"],
+    importpath = "github.com/mrdan4es/bazel-monorepo-example/pkg/protoc-gen-nats/internal",
+    visibility = ["//pkg/protoc-gen-nats:__subpackages__"],
+    deps = [
+        "//api/nats",
+        "@org_golang_google_protobuf//compiler/protogen",
+        "@org_golang_google_protobuf//proto",
+    ],
+)

@@ -10,7 +10,9 @@ proto_library(
 
 go_proto_library(
     name = "sumpb_go_proto",
-    compilers = ["@io_bazel_rules_go//proto:go_grpc"],
+    compilers = [
+        "@io_bazel_rules_go//proto:go_grpc",
+    ],
     importpath = "github.com/mrdan4es/bazel-monorepo-example/api/services/sum/v1",
     proto = ":sumpb_proto",
     visibility = ["//visibility:public"],

@@ -1,0 +1,30 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("@io_bazel_rules_go//proto:compiler.bzl", "go_proto_compiler")
+
+go_library(
+    name = "protoc-gen-nats_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/mrdan4es/bazel-monorepo-example/pkg/protoc-gen-nats",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//pkg/protoc-gen-nats/internal",
+        "@org_golang_google_protobuf//compiler/protogen",
+    ],
+)
+
+go_binary(
+    name = "protoc-gen-nats",
+    embed = [":protoc-gen-nats_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_proto_compiler(
+    name = "go_proto",
+    plugin = ":protoc-gen-nats",
+    suffix = ".pb.nats.go",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@org_golang_google_grpc//:go_default_library",
+        "@org_golang_google_protobuf//encoding/protojson",
+    ],
+)
